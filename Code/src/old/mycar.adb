@@ -38,8 +38,13 @@ package body MyCar is
       Drive 
       (Rotating_Right,
       (4095,4095,4095,4095));
-      delay 1.0;
    end Rotate_180_Left;
+   procedure Rotate_180_right is 
+   begin 
+      Drive
+      (Rotating_Left, 
+      (4095, 4095, 4095, 4095));
+   end Rotate_180_right;
    
 
 end MyCar;
