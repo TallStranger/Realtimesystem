@@ -28,9 +28,9 @@ package body TaskSense is
             Distance_Left : Integer := Integer(Sensor_Left.Read);
             Distance_Right : Integer := Integer(Sensor_Right.Read);
          begin 
-            --MicroBit.Console.Put_Line ("Distance Front: " & Integer'Image(Distance_Front));
+            MicroBit.Console.Put_Line ("Distance Front: " & Integer'Image(Distance_Front));
             --MicroBit.Console.Put_Line ("Distance Left: " & Integer'Image(Distance_Left));
-            --MicroBit.Console.Put_Line ("Distance Right: " & Integer'Image(Distance_Right));
+            MicroBit.Console.Put_Line ("Distance Right: " & Integer'Image(Distance_Right));
 
          Brain.SetMeasurementSensor1 (Distance_Front); 
          Brain.SetMeasurementSensor2 (Distance_Left);
