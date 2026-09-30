@@ -9,7 +9,7 @@ package body TaskAct is
    task body act is
       myClock : Time;      
    begin
-      Setup; -- we do Setup once at the start of the task;
+      Setup; 
       
       loop
          myClock := Clock;
@@ -17,9 +17,8 @@ package body TaskAct is
          
          --Put_Line ("Direction is: " & MotorDriver.GetDirection'Image);
        
-         delay until myClock + Milliseconds(50);  --random period, but faster than 20 ms is no use because Set_Analog_Period_Us(20000) !
-                                                 --faster is better but note the weakest link: if decisions in the thinking task come at 100ms and acting come at 20ms 
-                                                  --then no change is set in the acting task for at least 5x (and is wasting power to wake up and execute task!)
+         delay until myClock + Milliseconds(50);  
+         
       end loop;
    end act;
    
@@ -37,8 +36,9 @@ package body TaskAct is
          when Stop =>
          Mycar.Stop;
          when Rotate_180_Left =>
-         Put_Line ("Rotate left");
          Mycar.Rotate_180_Left;
+         when Rotate_180_right =>
+         Mycar.Rotate_180_right;
       end case;
    end Drive;
    
