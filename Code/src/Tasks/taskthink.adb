@@ -1,4 +1,5 @@
 With Ada.Real_Time; use Ada.Real_Time;
+with MyCar;
 
 package body TaskThink is
 
@@ -8,13 +9,13 @@ package body TaskThink is
       loop
          myClock := Clock;
         
-         --make a decision (could be wrapped nicely in a procedure)
-         if Brain.GetMeasurementSensor1 > 5 and Brain.GetMeasurementSensor2 > 5 and Brain.GetMeasurementSensorRight > 5 then            
-            MotorDriver.SetDirection (Forward); --our decision what to do based on the sensor values        
+         if Brain.GetMeasurementSensor1 < 10 and Brain.GetMeasurementSensorRight < 10 then            
+            MotorDriver.SetDirection (Rotate_180_Left);      
+         elsif Brain.GetMeasurementSensor1 < 10  then
+            MotorDriver.SetDirection (Stop);
          else
-            MotorDriver.SetDirection (Stop); 
+            MotorDriver.SetDirection (Forward); 
          end if;
-         
          delay until myClock + Milliseconds(100);  --random period
       end loop;
    end think;
