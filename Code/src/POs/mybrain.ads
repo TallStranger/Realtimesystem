@@ -1,16 +1,16 @@
 package MyBrain is
 
    protected Brain is
-      function GetMeasurementSensor1 return Integer; -- concurrent read operations are now possible
-      function GetMeasurementSensor2 return Integer; -- concurrent read operations are now possible
+      function GetMeasurementSensorFront return Integer; -- concurrent read operations are now possible
+      function GetMeasurementSensorLeft return Integer; -- concurrent read operations are now possible
       function GetMeasurementSensorRight return Integer;
   
-      procedure SetMeasurementSensor1 (V : Integer); -- but concurrent read/write are not!
-      procedure SetMeasurementSensor2 (V : Integer); -- but concurrent read/write are not!
+      procedure SetMeasurementSensorFront (V : Integer); -- but concurrent read/write are not!
+      procedure SetMeasurementSensorLeft (V : Integer); -- but concurrent read/write are not!
       procedure SetMeasurementSensorRight (V : Integer);
    private
-         MeasurementSensor1 : Integer := 0;
-         MeasurementSensor2 : Integer := 0;
+         MeasurementSensorFront : Integer := 0;
+         MeasurementSensorLeft : Integer := 0;
          MeasurementSensorRight : Integer := 0;
    end Brain;
 
