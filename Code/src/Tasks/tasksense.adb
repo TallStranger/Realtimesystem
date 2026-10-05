@@ -28,16 +28,16 @@ package body TaskSense is
             Distance_Left : Integer := Integer(Sensor_Left.Read);
             Distance_Right : Integer := Integer(Sensor_Right.Read);
          begin 
-            MicroBit.Console.Put_Line ("Distance Front: " & Integer'Image(Distance_Front));
-            --MicroBit.Console.Put_Line ("Distance Left: " & Integer'Image(Distance_Left));
-            MicroBit.Console.Put_Line ("Distance Right: " & Integer'Image(Distance_Right));
+            -- MicroBit.Console.Put_Line ("Distance Front: " & Integer'Image(Distance_Front));
+            -- MicroBit.Console.Put_Line ("Distance Left: " & Integer'Image(Distance_Left));
+            -- MicroBit.Console.Put_Line ("Distance Right: " & Integer'Image(Distance_Right));
 
          Brain.SetMeasurementSensorFront (Distance_Front); 
          Brain.SetMeasurementSensorLeft (Distance_Left);
          Brain.SetMeasurementSensorRight (Distance_Right);
          end;
          time_now := Clock - myClock; 
-         MicroBit.Console.Put_Line(To_Duration(time_now)'Image);
+         MicroBit.Console.Put_Line("Tasksense" & To_Duration(time_now)'Image);
 
          delay until myClock + Milliseconds(200); --random period
          

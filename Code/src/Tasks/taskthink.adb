@@ -1,10 +1,14 @@
 With Ada.Real_Time; use Ada.Real_Time;
+with MicroBit.Console;
 with MyCar;
+with Ada.Execution_Time; use Ada.Execution_Time;
+with MicroBit.Console;
 
 package body TaskThink is
 
   task body think is
    myClock : Time;
+   current_time : Time_Span;
    Front : Integer;
    Left : Integer;
    Right : Integer;
@@ -77,7 +81,8 @@ package body TaskThink is
                Current_State := Forward_State;
             end if;
          end case;
-         
+         current_time := Clock - myClock;
+         MicroBit.Console.Put_Line("Taskthink" & To_Duration(current_time)'Image);
          delay until myClock + Milliseconds(100);  --random period
       end loop;
    end think;
