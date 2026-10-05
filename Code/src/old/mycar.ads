@@ -7,5 +7,6 @@ package MyCar is
    procedure Stop;
    procedure Rotate_180_Left;
    procedure Rotate_180_right;
+   procedure Strafe_Right;
 
 end MyCar;
