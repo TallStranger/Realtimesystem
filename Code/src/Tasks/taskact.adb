@@ -39,6 +39,8 @@ package body TaskAct is
          Mycar.Rotate_180_Left;
          when Rotate_180_right =>
          Mycar.Rotate_180_right;
+         when Strafe_Right =>
+         Mycar.Strafe_Right;
       end case;
    end Drive;
    
