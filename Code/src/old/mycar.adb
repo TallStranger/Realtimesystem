@@ -45,6 +45,11 @@ package body MyCar is
       (Rotating_Left, 
       (4095, 4095, 4095, 4095));
    end Rotate_180_right;
-   
+   procedure Strafe_Right is
+   begin
+      Drive
+      (Lateral_Right, 
+      (4095, 4095, 4095, 4095));
+   end Strafe_Right;
 
 end MyCar;
