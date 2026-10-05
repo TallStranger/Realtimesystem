@@ -15,36 +15,24 @@ package body MyCar is
         (Backward,
          (4095,4095,4095,4095));
    end Backward;
-   procedure Rotate_Left is
-   begin
-      Drive
-        (Forward,
-         (0,0,4095,4095));
-   end Rotate_Left;
-   procedure Rotate_Right is   
-   begin
-      Drive
-        (Forward,
-         (4095,4095,0,0));
-   end Rotate_Right;
    procedure Stop is
    begin
       Drive
         (Forward,
          (0,0,0,0));
    end Stop;
-   procedure Rotate_180_Left is
+   procedure Rotate_Left is
    begin 
       Drive 
       (Rotating_Right,
       (4095,4095,4095,4095));
-   end Rotate_180_Left;
-   procedure Rotate_180_right is 
+   end Rotate_Left;
+   procedure Rotate_right is 
    begin 
       Drive
       (Rotating_Left, 
       (4095, 4095, 4095, 4095));
-   end Rotate_180_right;
+   end Rotate_right;
    procedure Strafe_Right is
    begin
       Drive
