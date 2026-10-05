@@ -32,8 +32,8 @@ package body TaskSense is
             --MicroBit.Console.Put_Line ("Distance Left: " & Integer'Image(Distance_Left));
             MicroBit.Console.Put_Line ("Distance Right: " & Integer'Image(Distance_Right));
 
-         Brain.SetMeasurementSensor1 (Distance_Front); 
-         Brain.SetMeasurementSensor2 (Distance_Left);
+         Brain.SetMeasurementSensorFront (Distance_Front); 
+         Brain.SetMeasurementSensorLeft (Distance_Left);
          Brain.SetMeasurementSensorRight (Distance_Right);
          end;
          time_now := Clock - myClock; 
