@@ -51,5 +51,11 @@ package body MyCar is
       (Lateral_Right, 
       (4095, 4095, 4095, 4095));
    end Strafe_Right;
+   procedure Strafe_Left is 
+   begin 
+      Drive 
+      (Lateral_Left,
+      (4095, 4095, 4095, 4095));
+   end Strafe_Left;
 
 end MyCar;
