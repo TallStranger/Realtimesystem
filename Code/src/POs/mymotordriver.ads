@@ -3,7 +3,7 @@ With MicroBit.IOsForTasking; use MicroBit.IOsForTasking; -- we only depend on th
 
 package MyMotorDriver is
 
-   type Directions is (Forward, Stop, Rotate_180_Left, Rotate_180_right); --only two are implemented but many configuration are possible with mecanum wheels
+   type Directions is (Forward, Stop, Rotate_180_Left, Rotate_180_right, Strafe_Right); --only two are implemented but many configuration are possible with mecanum wheels
    
    protected MotorDriver is
       -- see https://learn.adacore.com/courses/Ada_For_The_Embedded_C_Developer/chapters/03_Concurrency.html#protected-objects
