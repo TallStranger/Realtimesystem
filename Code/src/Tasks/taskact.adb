@@ -35,14 +35,16 @@ package body TaskAct is
          MyCar.Forward;
          when Stop =>
          Mycar.Stop;
-         when Rotate_180_Left =>
-         Mycar.Rotate_180_Left;
-         when Rotate_180_right =>
-         Mycar.Rotate_180_right;
+         when Rotate_Left =>
+         Mycar.Rotate_Left;
+         when Rotate_right =>
+         Mycar.Rotate_right;
          when Strafe_Right =>
          Mycar.Strafe_Right;
          when Strafe_Left =>
          Mycar.Strafe_Left;
+         when Backward =>
+         Mycar.Backward;
       end case;
    end Drive;
    
