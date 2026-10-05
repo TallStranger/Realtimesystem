@@ -10,7 +10,8 @@ package body TaskThink is
       Stop_State,
       Rotate_Left_State,
       Rotate_Right_State,
-      Strafe_Right_State
+      Strafe_Right_State,
+      Strafe_Left_State
    );
    Current_State : States := Forward_State;
    begin
@@ -26,6 +27,8 @@ package body TaskThink is
                Current_State := Rotate_Right_State;
             elsif Brain.GetMeasurementSensorLeft <10 then 
                Current_State := Strafe_Right_State;
+            elsif Brain.GetMeasurementSensorRight < 10 then
+               Current_State := Strafe_Left_State;
             end if;
          when Rotate_Left_State => 
             MotorDriver.SetDirection (Rotate_180_Left);
@@ -42,6 +45,11 @@ package body TaskThink is
          when Strafe_Right_State =>
             MotorDriver.SetDirection (Strafe_Right);
             if Brain.GetMeasurementSensorLeft > 20 then 
+               Current_State := Forward_State;
+            end if;
+         when Strafe_Left_State =>
+            MotorDriver.SetDirection (Strafe_Left);
+            if Brain.GetMeasurementSensorRight > 20 then
                Current_State := Forward_State;
             end if;
          end case;
