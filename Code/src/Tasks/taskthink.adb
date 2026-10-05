@@ -20,28 +20,28 @@ package body TaskThink is
         case Current_State is 
          when Forward_State =>
          MotorDriver.SetDirection (Forward);
-            if Brain.GetMeasurementSensor1 < 10 and Brain.GetMeasurementSensorRight < 10 then
+            if Brain.GetMeasurementSensorFront < 10 and Brain.GetMeasurementSensorRight < 10 then
                Current_State := Rotate_Left_State;
-            elsif Brain.GetMeasurementSensor1 < 10 and Brain.GetMeasurementSensor2 < 10 then
+            elsif Brain.GetMeasurementSensorFront < 10 and Brain.GetMeasurementSensorLeft < 10 then
                Current_State := Rotate_Right_State;
-            elsif Brain.GetMeasurementSensor2 <10 then 
+            elsif Brain.GetMeasurementSensorLeft <10 then 
                Current_State := Strafe_Right_State;
             end if;
          when Rotate_Left_State => 
             MotorDriver.SetDirection (Rotate_180_Left);
-               if Brain.GetMeasurementSensor1 > 10 then 
+               if Brain.GetMeasurementSensorFront > 10 then 
                   Current_State := Forward_State;
                end if;
          when Rotate_Right_State =>
             MotorDriver.SetDirection (Rotate_180_right);
-               if Brain.GetMeasurementSensor1 > 10 then
+               if Brain.GetMeasurementSensorFront > 10 then
                   Current_State := Forward_State;
                end if;
          when Stop_State =>
             MotorDriver.SetDirection (Stop);
          when Strafe_Right_State =>
             MotorDriver.SetDirection (Strafe_Right);
-            if Brain.GetMeasurementSensor2 > 20 then 
+            if Brain.GetMeasurementSensorLeft > 20 then 
                Current_State := Forward_State;
             end if;
          end case;
