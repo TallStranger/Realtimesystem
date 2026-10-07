@@ -33,18 +33,18 @@ package body TaskThink is
         case Current_State is 
          when Forward_State =>
          MotorDriver.SetDirection (Forward);
-            if Front < 10 and Right < 10 then
-               Current_State := Rotate_Left_State;
-            elsif Front < 10 and Left < 10 then
-               Current_State := Rotate_Right_State;
-            elsif Left <10 then 
+            --if Front < 10 and Right < 10 then
+               --Current_State := Rotate_Left_State;
+            --elsif Front < 10 and Left < 10 then
+               --Current_State := Rotate_Right_State;
+            if Left <10 then 
                Current_State := Strafe_Right_State;
             elsif Right < 10 then
                Current_State := Strafe_Left_State;
             elsif Front < 10 then
-               if right > 10 then 
+               if right > 20 then 
                   Current_State :=Rotate_Right_State;
-               elsif Left > 10 then 
+               elsif Left > 20 then 
                   Current_State := Rotate_Left_State;
                else 
                   Current_State := Reverse_State;
@@ -52,12 +52,12 @@ package body TaskThink is
             end if;
          when Rotate_Left_State => 
             MotorDriver.SetDirection (Rotate_Left);
-               if Front > 20 then 
+               if Front > 30 then 
                   Current_State := Forward_State;
                end if;
          when Rotate_Right_State =>
             MotorDriver.SetDirection (Rotate_right);
-               if Front > 20 then
+               if Front > 30 then
                   Current_State := Forward_State;
                end if;
          when Stop_State =>
