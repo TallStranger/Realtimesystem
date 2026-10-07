@@ -5,6 +5,6 @@ Procedure Main with Priority => 0 is
 
 begin
    loop 
-      null;
+      delay 10.0;
    end loop;
 end Main;
