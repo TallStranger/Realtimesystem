@@ -1,9 +1,11 @@
 With Ada.Real_Time; use Ada.Real_Time;
 with Ada.Text_IO;
+with LSM303AGR;
 with MicroBit.Console;
 With MicroBit.Ultrasonic; 
 with MicroBit; use MicroBit;
 with Ada.Execution_Time; use Ada.Execution_Time;
+with MicroBit.Accelerometer;
 
 package body TaskSense is
 
@@ -27,13 +29,18 @@ package body TaskSense is
             Distance_Front : Integer := Integer(Sensor_Front.Read);
             Distance_Left : Integer := Integer(Sensor_Left.Read);
             Distance_Right : Integer := Integer(Sensor_Right.Read);
+            Data : LSM303AGR.All_Axes_Data;
          begin 
          Brain.SetMeasurementSensorFront (Distance_Front); 
          Brain.SetMeasurementSensorLeft (Distance_Left);
          Brain.SetMeasurementSensorRight (Distance_Right);
+         Data := Microbit.Accelerometer.AccelData;
+      
+         MicroBit.Console.Put_Line("Y koordinater" & Data.Y'Img);
+         
          end;
          time_now := Clock - myClock; 
-         MicroBit.Console.Put_Line("Tasksense" & To_Duration(time_now)'Image);
+         --MicroBit.Console.Put_Line("Tasksense" & To_Duration(time_now)'Image);
 
          delay until myClock + Milliseconds(200); --random period
          
