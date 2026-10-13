@@ -38,6 +38,7 @@ package body TaskThink is
             --elsif Front < 10 and Left < 10 then
                --Current_State := Rotate_Right_State;
             if Left <10 then 
+               Brain.SetAlarm(True);
                Current_State := Strafe_Right_State;
             elsif Right < 10 then
                Current_State := Strafe_Left_State;

@@ -35,6 +35,16 @@ package body MyBrain is
       begin 
          return MeasurementSensorRight;
       end GetMeasurementSensorRight;
+
+      procedure SetAlarm (V : Boolean) is 
+      begin 
+         Alarm := V;
+      end SetAlarm;
+
+      function GetAlarm return Boolean is
+      begin 
+         return Alarm;
+      end GetAlarm;
    end Brain;
 
 end MyBrain;
