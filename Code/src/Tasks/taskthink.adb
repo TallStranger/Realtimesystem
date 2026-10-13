@@ -82,7 +82,7 @@ package body TaskThink is
             end if;
          end case;
          current_time := Clock - myClock;
-         MicroBit.Console.Put_Line("Taskthink" & To_Duration(current_time)'Image);
+         --MicroBit.Console.Put_Line("Taskthink" & To_Duration(current_time)'Image);
          delay until myClock + Milliseconds(100);  --random period
       end loop;
    end think;
