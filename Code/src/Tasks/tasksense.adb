@@ -6,6 +6,7 @@ With MicroBit.Ultrasonic;
 with MicroBit; use MicroBit;
 with Ada.Execution_Time; use Ada.Execution_Time;
 with MicroBit.Accelerometer;
+with MicroBit.Buttons; use MicroBit.Buttons;
 
 package body TaskSense is
 
@@ -23,8 +24,11 @@ package body TaskSense is
       
       loop
          myClock := Clock; 
-                        
-         
+         if MicroBit.Buttons.State (Button_A) = Pressed then
+            Brain.SetMode(Normal_Mode);               
+         elsif MicroBit.Buttons.State (Button_B) = Pressed then
+            Brain.SetMode(Chaos_Mode);
+         end if;
          declare
             Distance_Front : Integer := Integer(Sensor_Front.Read);
             Distance_Left : Integer := Integer(Sensor_Left.Read);
@@ -35,7 +39,7 @@ package body TaskSense is
          Brain.SetMeasurementSensorLeft (Distance_Left);
          Brain.SetMeasurementSensorRight (Distance_Right);
          Data := Microbit.Accelerometer.AccelData;
-      
+
          --MicroBit.Console.Put_Line("Y koordinater" & Data.Y'Img);
          
          end;
