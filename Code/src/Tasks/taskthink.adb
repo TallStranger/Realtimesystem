@@ -32,6 +32,7 @@ package body TaskThink is
 
         case Current_State is 
          when Forward_State =>
+         Brain.SetAlarm(False);
          MotorDriver.SetDirection (Forward);
             --if Front < 10 and Right < 10 then
                --Current_State := Rotate_Left_State;
@@ -41,8 +42,10 @@ package body TaskThink is
                Brain.SetAlarm(True);
                Current_State := Strafe_Right_State;
             elsif Right < 10 then
+               Brain.SetAlarm(True);
                Current_State := Strafe_Left_State;
             elsif Front < 10 then
+               Brain.SetAlarm(True);
                if right > 20 then 
                   Current_State :=Rotate_Right_State;
                elsif Left > 20 then 
@@ -83,7 +86,7 @@ package body TaskThink is
             end if;
          end case;
          current_time := Clock - myClock;
-         --MicroBit.Console.Put_Line("Taskthink" & To_Duration(current_time)'Image);
+         MicroBit.Console.Put_Line("Taskthink" & To_Duration(current_time)'Image);
          delay until myClock + Milliseconds(100);  --random period
       end loop;
    end think;
