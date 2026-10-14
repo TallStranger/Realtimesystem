@@ -1,4 +1,5 @@
 with MyMotorDriver; use MyMotorDriver;
+with MyBrain; use MyBrain;
 
 package TaskAct is
 
@@ -6,4 +7,5 @@ package TaskAct is
 
    procedure Setup;    
    procedure Drive (direction : Directions);
+   procedure Update_Display;
 end TaskAct;

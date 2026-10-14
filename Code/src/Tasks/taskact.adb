@@ -5,6 +5,8 @@ with MyBrain;
 with MyCar;
 with Microbit.Servos; use MicroBit.Servos;
 with MicroBit.Music; use MicroBit.Music;
+with MicroBit.DisplayRT;
+with MicroBit.DisplayRT.Symbols;
 
 --Important: use Microbit.IOsForTasking for controlling pins as the timer used there is implemented as an protected object
 package body TaskAct is
@@ -18,7 +20,9 @@ package body TaskAct is
       loop
          myClock := Clock;
          Drive(MotorDriver.GetDirection);
-         
+        
+         Update_Display;
+
          now_time := Clock - myClock;
          MicroBit.Console.Put_Line("Taskact" & To_Duration(now_time)'Image);
          delay until myClock + Milliseconds(50);  
@@ -51,5 +55,22 @@ package body TaskAct is
          Mycar.Backward;
       end case;
    end Drive;
+
+   procedure Update_Display is
+   begin
+
+      case Brain.GetMode is
+
+         when Normal_Mode =>
+            MicroBit.DisplayRT.Clear;
+            MicroBit.DisplayRT.Symbols.Smile;
+
+         when Chaos_Mode =>
+            MicroBit.DisplayRT.Clear;
+            MicroBit.DisplayRT.Symbols.Frown;
+
+      end case;
+
+end Update_Display;
    
 end TaskAct;
