@@ -45,6 +45,16 @@ package body MyBrain is
       begin 
          return Alarm;
       end GetAlarm;
+
+      procedure SetMode (V: Modes) is 
+      begin 
+         CurrentMode := V;
+      end SetMode;
+
+      function GetMode return Modes is 
+      begin 
+         return CurrentMode;
+      end GetMode;
    end Brain;
 
 end MyBrain;
