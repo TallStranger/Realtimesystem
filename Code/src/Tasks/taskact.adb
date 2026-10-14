@@ -38,6 +38,8 @@ package body TaskAct is
       
    procedure Drive (Direction : Directions) is
    begin
+   case Brain.GetMode is 
+   when Normal_Mode =>
       case Direction is
          when Forward =>
          MyCar.Forward;
@@ -54,6 +56,24 @@ package body TaskAct is
          when Backward =>
          Mycar.Backward;
       end case;
+   when Chaos_Mode =>
+      case Direction is
+         when Forward =>
+         MyCar.Forward;
+         when Stop =>
+         Mycar.Forward;
+         when Rotate_Left =>
+         Mycar.Rotate_Right;
+         when Rotate_right =>
+         Mycar.Rotate_Left;
+         when Strafe_Right =>
+         Mycar.Strafe_left;
+         when Strafe_Left =>
+         Mycar.Strafe_right;
+         when Backward =>
+         Mycar.Forward;
+      end case;
+   end case;
    end Drive;
 
    procedure Update_Display is
