@@ -8,7 +8,6 @@ with MicroBit.Music; use MicroBit.Music;
 with MicroBit.DisplayRT;
 with MicroBit.DisplayRT.Symbols;
 
---Important: use Microbit.IOsForTasking for controlling pins as the timer used there is implemented as an protected object
 package body TaskAct is
 
    task body act is

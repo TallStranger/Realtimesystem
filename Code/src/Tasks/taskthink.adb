@@ -34,10 +34,6 @@ package body TaskThink is
          when Forward_State =>
          Brain.SetAlarm(False);
          MotorDriver.SetDirection (Forward);
-            --if Front < 10 and Right < 10 then
-               --Current_State := Rotate_Left_State;
-            --elsif Front < 10 and Left < 10 then
-               --Current_State := Rotate_Right_State;
             if Left <10 then 
                Brain.SetAlarm(True);
                Current_State := Strafe_Right_State;

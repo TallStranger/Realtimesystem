@@ -1,15 +1,13 @@
---Important: use Microbit.IOsForTasking for controlling pins as the timer used there is implemented as an protected object
-With MicroBit.IOsForTasking; use MicroBit.IOsForTasking; -- we only depend on this for Analog_Value definition and Pin_Id. This could be abstracted so there is a smaller dependency!
+With MicroBit.IOsForTasking; use MicroBit.IOsForTasking; 
 
 package MyMotorDriver is
 
-   type Directions is (Forward, Stop, Rotate_Left, Rotate_right, Strafe_Right, Strafe_Left, Backward); --only two are implemented but many configuration are possible with mecanum wheels
+   type Directions is (Forward, Stop, Rotate_Left, Rotate_right, Strafe_Right, Strafe_Left, Backward); 
    
    protected MotorDriver is
-      -- see https://learn.adacore.com/courses/Ada_For_The_Embedded_C_Developer/chapters/03_Concurrency.html#protected-objects
-      function GetDirection return Directions; -- concurrent read operations are now possible
+      function GetDirection return Directions; 
       
-      procedure SetDirection (V : Directions); -- but concurrent read/write are not!
+      procedure SetDirection (V : Directions); 
    private
       DriveDirection : Directions := Stop;
    end MotorDriver;

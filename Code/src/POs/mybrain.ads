@@ -7,14 +7,14 @@ package MyBrain is
          );
 
    protected Brain is
-      function GetMeasurementSensorFront return Integer; -- concurrent read operations are now possible
-      function GetMeasurementSensorLeft return Integer; -- concurrent read operations are now possible
+      function GetMeasurementSensorFront return Integer; 
+      function GetMeasurementSensorLeft return Integer; 
       function GetMeasurementSensorRight return Integer;
       function GetAlarm return Boolean;
       function GetMode return Modes;
   
-      procedure SetMeasurementSensorFront (V : Integer); -- but concurrent read/write are not!
-      procedure SetMeasurementSensorLeft (V : Integer); -- but concurrent read/write are not!
+      procedure SetMeasurementSensorFront (V : Integer); 
+      procedure SetMeasurementSensorLeft (V : Integer); 
       procedure SetMeasurementSensorRight (V : Integer);
       procedure SetAlarm (V : Boolean);
       procedure SetMode (V : Modes);
