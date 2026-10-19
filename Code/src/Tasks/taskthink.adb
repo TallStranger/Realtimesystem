@@ -12,7 +12,7 @@ package body TaskThink is
    Front : Integer;
    Left : Integer;
    Right : Integer;
-   type States is (
+   type States_Normal is (
       Forward_State,
       Stop_State,
       Rotate_Left_State,
@@ -21,7 +21,13 @@ package body TaskThink is
       Strafe_Left_State,
       Reverse_State
    );
-   Current_State : States := Forward_State;
+   type States_Chaos is (
+      Forward_State,
+      Strafe_Left_State,
+      Strafe_Right_State
+   );
+   Current_State : States_Normal := Forward_State;
+   Current_State_chaos : States_Chaos := Forward_State;
    begin
       loop
          myClock := Clock;
@@ -84,13 +90,13 @@ package body TaskThink is
             end if;
          end case;
          when Chaos_Mode =>
-            case Current_State is
+            case Current_State_chaos is
             when Forward_State =>
             MotorDriver.SetDirection (Forward);
             if Right < 30 then 
-               Current_State := Strafe_Right_State;
+               Current_State_chaos := Strafe_Right_State;
             elsif Left < 30 then 
-               Current_State := Strafe_Left_State;
+               Current_State_chaos := Strafe_Left_State;
             end if;
             when Strafe_Left_State =>
                MotorDriver.SetDirection (Strafe_Left);
