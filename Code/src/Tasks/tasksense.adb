@@ -41,10 +41,11 @@ package body TaskSense is
          Data := Microbit.Accelerometer.AccelData;
 
          --MicroBit.Console.Put_Line("Y koordinater" & Data.Y'Img);
+         MicroBit.Console.Put_Line("Right sensor" & Distance_Right'image);
          
          end;
          time_now := Clock - myClock; 
-         MicroBit.Console.Put_Line("Tasksense" & To_Duration(time_now)'Image);
+         --MicroBit.Console.Put_Line("Tasksense" & To_Duration(time_now)'Image);
 
          delay until myClock + Milliseconds(200); --random period
          
