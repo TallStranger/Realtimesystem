@@ -93,19 +93,29 @@ package body TaskThink is
             case Current_State_chaos is
             when Forward_State =>
             MotorDriver.SetDirection (Forward);
-            if Right < 30 then 
+            if Right < 10 then 
                Current_State_chaos := Strafe_Right_State;
-            elsif Left < 30 then 
+            elsif Left < 10 then 
                Current_State_chaos := Strafe_Left_State;
             end if;
             when Strafe_Left_State =>
                MotorDriver.SetDirection (Strafe_Left);
+               if Left < 3 then 
+                  Current_State_chaos := Forward_State;
+               elsif Left > 30 then 
+                  Current_State_chaos := Forward_State;
+               end if;
             when Strafe_Right_State =>
                MotorDriver.SetDirection (Strafe_Right);
+               if Right < 3 then 
+                  Current_State_chaos := Forward_State;
+               elsif Right > 30 then 
+                  Current_State_chaos := Forward_State;
+               end if;
          end case;
          end case; 
          current_time := Clock - myClock;
-         MicroBit.Console.Put_Line("Taskthink" & To_Duration(current_time)'Image);
+         --MicroBit.Console.Put_Line("Taskthink" & To_Duration(current_time)'Image);
          delay until myClock + Milliseconds(100);  --random period
       end loop;
    end think;
