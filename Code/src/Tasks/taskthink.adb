@@ -29,7 +29,9 @@ package body TaskThink is
         Front := Brain.GetMeasurementSensorFront;
         Left := Brain.GetMeasurementSensorLeft;
         Right := Brain.GetMeasurementSensorRight;
-
+      
+      case Brain.GetMode is
+         when Normal_Mode =>
         case Current_State is 
          when Forward_State =>
          Brain.SetAlarm(False);
@@ -81,6 +83,21 @@ package body TaskThink is
                Current_State := Forward_State;
             end if;
          end case;
+         when Chaos_Mode =>
+            case Current_State is
+            when Forward_State =>
+            MotorDriver.SetDirection (Forward);
+            if Right < 30 then 
+               Current_State := Strafe_Right_State;
+            elsif Left < 30 then 
+               Current_State := Strafe_Left_State;
+            end if;
+            when Strafe_Left_State =>
+               MotorDriver.SetDirection (Strafe_Left);
+            when Strafe_Right_State =>
+               MotorDriver.SetDirection (Strafe_Right);
+         end case;
+         end case; 
          current_time := Clock - myClock;
          MicroBit.Console.Put_Line("Taskthink" & To_Duration(current_time)'Image);
          delay until myClock + Milliseconds(100);  --random period
