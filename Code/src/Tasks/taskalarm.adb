@@ -21,7 +21,7 @@ package body TaskAlarm is
             Play (27, Rest);
          end if;
          TimeTook := Clock - MyClock;
-         --MicroBit.Console.Put_Line("Alarm time: " & To_Duration (TimeTook)'Image);
+         MicroBit.Console.Put_Line("Alarm time: " & To_Duration (TimeTook)'Image);
          delay until MyClock + Milliseconds (250);
 
       end loop;

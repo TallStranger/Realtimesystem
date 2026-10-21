@@ -23,7 +23,7 @@ package body TaskAct is
          Update_Display;
 
          now_time := Clock - myClock;
-         --MicroBit.Console.Put_Line("Taskact" & To_Duration(now_time)'Image);
+         MicroBit.Console.Put_Line("Taskact" & To_Duration(now_time)'Image);
          delay until myClock + Milliseconds(50);  
          
       end loop;
