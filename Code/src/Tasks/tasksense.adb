@@ -16,6 +16,13 @@ package body TaskSense is
     task body sense is
       myClock : Time;
       time_now : Time_Span;
+      Raw_Y : Integer;
+      Previous_Raw_Y : Integer := 0;
+      Delta_Y : Integer;
+      Average_Delta : Float := 0.0;
+      Previous_Average_Delta : Float := 0.0;
+
+
 
 
    begin
@@ -39,13 +46,29 @@ package body TaskSense is
          Brain.SetMeasurementSensorLeft (Distance_Left);
          Brain.SetMeasurementSensorRight (Distance_Right);
          Data := Microbit.Accelerometer.AccelData;
+         Raw_Y := Integer(Data.Y);
 
+            Delta_Y := abs(Raw_Y - Previous_Raw_Y);
+
+            Previous_Raw_Y := Raw_Y;
+
+            Average_Delta :=
+               0.3 * Float(Delta_Y)
+               + 0.7 * Previous_Average_Delta;
+            Previous_Average_Delta := Average_Delta;
+
+            --MicroBit.Console.Put_Line(
+            --"Raw=" & Raw_Y'Image &
+            --" Delta=" & Delta_Y'Image &
+            --" Avarage Delta= " & Integer(Average_Delta)'Image);     
+         
+         --MicroBit.Console.Put_Line("Raw data Y: " & Data_X'Image);
          --MicroBit.Console.Put_Line("Y koordinater" & Data.Y'Img);
-         MicroBit.Console.Put_Line("Right sensor" & Distance_Right'image);
+        -- MicroBit.Console.Put_Line("Right sensor" & Distance_Right'image);
          
          end;
          time_now := Clock - myClock; 
-         --MicroBit.Console.Put_Line("Tasksense" & To_Duration(time_now)'Image);
+         MicroBit.Console.Put_Line("Tasksense" & To_Duration(time_now)'Image);
 
          delay until myClock + Milliseconds(200); --random period
          
