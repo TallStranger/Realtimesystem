@@ -55,6 +55,16 @@ package body MyBrain is
       begin 
          return CurrentMode;
       end GetMode;
+
+      procedure SetAccelVal (V : Integer) is 
+      begin 
+         AccelVal := V;
+      end SetAccelVal;
+
+      function GetAccelVal return Integer is 
+      begin 
+         return AccelVal;
+      end GetAccelVal;
    end Brain;
 
 end MyBrain;

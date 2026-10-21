@@ -12,18 +12,21 @@ package MyBrain is
       function GetMeasurementSensorRight return Integer;
       function GetAlarm return Boolean;
       function GetMode return Modes;
+      function GetAccelVal return Integer;
   
       procedure SetMeasurementSensorFront (V : Integer); 
       procedure SetMeasurementSensorLeft (V : Integer); 
       procedure SetMeasurementSensorRight (V : Integer);
       procedure SetAlarm (V : Boolean);
       procedure SetMode (V : Modes);
+      procedure SetAccelVal (V : Integer);
    private
          MeasurementSensorFront : Integer := 0;
          MeasurementSensorLeft : Integer := 0;
          MeasurementSensorRight : Integer := 0;
          Alarm : Boolean := False;
          CurrentMode : Modes := Normal_Mode;
+         AccelVal : Integer := 0;
    end Brain;
 
 end MyBrain;
