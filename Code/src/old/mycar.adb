@@ -1,19 +1,21 @@
 with MicroBit.Console;
 with MicroBit.MotorDriver; use MicroBit.MotorDriver;
+with HAL; use HAL;
 
 package body MyCar is
+speed : UInt12 := 2000;
 
    procedure Forward is
    begin
       Drive
         (Forward,
-         (4095,4095,4095,4095));
+         (speed,speed,speed,speed));
    end Forward;
    procedure Backward is
    begin
       Drive
         (Backward,
-         (4095,4095,4095,4095));
+         (speed,speed,speed,speed));
    end Backward;
    procedure Stop is
    begin
