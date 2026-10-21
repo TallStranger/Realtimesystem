@@ -12,6 +12,7 @@ package body TaskThink is
    Front : Integer;
    Left : Integer;
    Right : Integer;
+   Accel : Integer;
    type States_Normal is (
       Forward_State,
       Stop_State,
@@ -31,17 +32,17 @@ package body TaskThink is
    begin
       loop
          myClock := Clock;
-        
         Front := Brain.GetMeasurementSensorFront;
         Left := Brain.GetMeasurementSensorLeft;
         Right := Brain.GetMeasurementSensorRight;
-      
+        Accel := Brain.GetAccelVal;
+      begin
       case Brain.GetMode is
          when Normal_Mode =>
         case Current_State is 
          when Forward_State =>
          Brain.SetAlarm(False);
-         MotorDriver.SetDirection (Forward);
+         MotorDriver.SetDirection (Backward);
             if Left <10 then 
                Brain.SetAlarm(True);
                Current_State := Strafe_Right_State;
@@ -100,22 +101,31 @@ package body TaskThink is
             end if;
             when Strafe_Left_State =>
                MotorDriver.SetDirection (Strafe_Left);
-               if Left < 3 then 
+               if Left < 5 then 
                   Current_State_chaos := Forward_State;
                elsif Left > 30 then 
                   Current_State_chaos := Forward_State;
                end if;
             when Strafe_Right_State =>
                MotorDriver.SetDirection (Strafe_Right);
-               if Right < 3 then 
+               if Right < 5 then 
                   Current_State_chaos := Forward_State;
                elsif Right > 30 then 
                   Current_State_chaos := Forward_State;
                end if;
          end case;
          end case; 
+         exception
+         when Constraint_Error =>
+            MicroBit.Console.Put_Line("Constraint error detected, stopping car");
+            MotorDriver.SetDirection(Stop);
+         when others =>
+            MicroBit.Console.Put_Line("Some error detected");
+            MotorDriver.SetDirection(Stop);
+         end;
          current_time := Clock - myClock;
-         --MicroBit.Console.Put_Line("Taskthink" & To_Duration(current_time)'Image);
+         --MicroBit.Console.Put_Line("Accelvalue: " & Accel'Image);
+         MicroBit.Console.Put_Line("Taskthink" & To_Duration(current_time)'Image);
          delay until myClock + Milliseconds(100);  --random period
       end loop;
    end think;
