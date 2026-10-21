@@ -27,7 +27,8 @@ package body TaskThink is
       Strafe_Left_State,
       Strafe_Right_State
    );
-   Current_State : States_Normal := Forward_State;
+   
+   Current_State : States_Normal := Reverse_State;
    Current_State_chaos : States_Chaos := Forward_State;
    begin
       loop
@@ -42,7 +43,7 @@ package body TaskThink is
         case Current_State is 
          when Forward_State =>
          Brain.SetAlarm(False);
-         MotorDriver.SetDirection (Backward);
+         MotorDriver.SetDirection (Forward);
             if Left <10 then 
                Brain.SetAlarm(True);
                Current_State := Strafe_Right_State;
@@ -86,8 +87,10 @@ package body TaskThink is
             end if;
          when Reverse_State =>
             MotorDriver.SetDirection (Backward);
-            if Front > 30 then
-               Current_State := Forward_State;
+            --if Front > 30 then
+              -- Current_State := Forward_State;
+            if Accel > 110 then 
+               Current_State := Stop_State;
             end if;
          end case;
          when Chaos_Mode =>
@@ -125,7 +128,7 @@ package body TaskThink is
          end;
          current_time := Clock - myClock;
          --MicroBit.Console.Put_Line("Accelvalue: " & Accel'Image);
-         MicroBit.Console.Put_Line("Taskthink" & To_Duration(current_time)'Image);
+         --MicroBit.Console.Put_Line("Taskthink" & To_Duration(current_time)'Image);
          delay until myClock + Milliseconds(100);  --random period
       end loop;
    end think;
