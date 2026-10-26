@@ -27,7 +27,7 @@ package body TaskSense is
 
    begin
       
-      MicroBit.Console.Put_Line ("Sense started");
+      --MicroBit.Console.Put_Line ("Sense started");
       
       loop
          myClock := Clock; 
@@ -58,10 +58,10 @@ package body TaskSense is
             Previous_Average_Delta := Average_Delta;
             Brain.SetAccelVal (Integer(Average_Delta));
 
-            MicroBit.Console.Put_Line(
-            "Raw=" & Raw_Y'Image &
-            " Delta=" & Delta_Y'Image &
-            " Avarage Delta= " & Integer(Average_Delta)'Image);     
+            --MicroBit.Console.Put_Line(
+           -- "Raw=" & Raw_Y'Image &
+           -- " Delta=" & Delta_Y'Image &
+           -- " Avarage Delta= " & Integer(Average_Delta)'Image);     
          
          --MicroBit.Console.Put_Line("Raw data Y: " & Data_X'Image);
          --MicroBit.Console.Put_Line("Y koordinater" & Data.Y'Img);
@@ -69,7 +69,7 @@ package body TaskSense is
          
          end;
          time_now := Clock - myClock; 
-        -- MicroBit.Console.Put_Line("Tasksense" & To_Duration(time_now)'Image);
+         --MicroBit.Console.Put_Line("Tasksense" & To_Duration(time_now)'Image);
 
          delay until myClock + Milliseconds(200); --random period
          
