@@ -70,6 +70,6 @@ package body TaskAct is
 
       end case;
 
-end Update_Display;
+   end Update_Display;
    
 end TaskAct;
