@@ -27,25 +27,25 @@ speed : UInt12 := 2000;
    begin 
       Drive 
       (Rotating_Right,
-      (4095,4095,4095,4095));
+      (speed,speed,speed,speed));
    end Rotate_Left;
    procedure Rotate_right is 
    begin 
       Drive
       (Rotating_Left, 
-      (4095, 4095, 4095, 4095));
+      (speed, speed, speed, speed));
    end Rotate_right;
    procedure Strafe_Right is
    begin
       Drive
       (Lateral_Right, 
-      (4095, 4095, 4095, 4095));
+      (speed, speed, speed, speed));
    end Strafe_Right;
    procedure Strafe_Left is 
    begin 
       Drive 
       (Lateral_Left,
-      (4095, 4095, 4095, 4095));
+      (speed, speed, speed, speed));
    end Strafe_Left;
 
 end MyCar;
