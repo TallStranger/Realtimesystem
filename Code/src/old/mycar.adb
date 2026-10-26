@@ -3,7 +3,7 @@ with MicroBit.MotorDriver; use MicroBit.MotorDriver;
 with HAL; use HAL;
 
 package body MyCar is
-speed : UInt12 := 2000;
+speed : UInt12 := 2500;
 
    procedure Forward is
    begin
