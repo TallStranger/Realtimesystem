@@ -9,9 +9,9 @@ package body TaskThink is
   task body think is
    myClock : Time;
    current_time : Time_Span;
-   Front : Integer;
-   Left : Integer;
-   Right : Integer;
+   Front : Integer range 0 .. 100;
+   Left : Integer range 0 .. 100;
+   Right : Integer range 0 .. 100;
    Accel : Integer;
    type States_Normal is (
       Forward_State,
@@ -44,7 +44,9 @@ package body TaskThink is
          when Forward_State =>
          Brain.SetAlarm(False);
          MotorDriver.SetDirection (Forward);
-            if Front < 20 and Right > 10 then
+            if front < 10 and Right < 10 and Left < 10 then
+               Current_State := Reverse_state;
+            elsif Front < 20 and Right > 10 then
                Current_State := Rotate_Right_State;
             elsif Front < 20 and Left > 10 then 
                Current_State := Rotate_Left_State;
@@ -82,10 +84,10 @@ package body TaskThink is
             end if;
          when Reverse_State =>
             MotorDriver.SetDirection (Backward);
-            --if Front > 30 then
-              -- Current_State := Forward_State;
             if Accel > 110 then 
                Current_State := Stop_State;
+            elsif Front > 30 then
+              Current_State := Forward_State;
             end if;
          end case;
          when Chaos_Mode =>
