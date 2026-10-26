@@ -28,7 +28,7 @@ package body TaskThink is
       Strafe_Right_State
    );
    
-   Current_State : States_Normal := Reverse_State;
+   Current_State : States_Normal := Forward_State;
    Current_State_chaos : States_Chaos := Forward_State;
    begin
       loop
@@ -44,21 +44,16 @@ package body TaskThink is
          when Forward_State =>
          Brain.SetAlarm(False);
          MotorDriver.SetDirection (Forward);
-            if Left <10 then 
+            if Front < 20 and Right > 10 then
+               Current_State := Rotate_Right_State;
+            elsif Front < 20 and Left > 10 then 
+               Current_State := Rotate_Left_State;
+            elsif Left <15 then 
                Brain.SetAlarm(True);
                Current_State := Strafe_Right_State;
-            elsif Right < 10 then
+            elsif Right < 15 then
                Brain.SetAlarm(True);
                Current_State := Strafe_Left_State;
-            elsif Front < 10 then
-               Brain.SetAlarm(True);
-               if right > 20 then 
-                  Current_State :=Rotate_Right_State;
-               elsif Left > 20 then 
-                  Current_State := Rotate_Left_State;
-               else 
-                  Current_State := Reverse_State;
-               end if;
             end if;
          when Rotate_Left_State => 
             MotorDriver.SetDirection (Rotate_Left);
