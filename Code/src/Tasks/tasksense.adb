@@ -21,14 +21,7 @@ package body TaskSense is
       Delta_Y : Integer;
       Average_Delta : Float := 0.0;
       Previous_Average_Delta : Float := 0.0;
-
-
-
-
-   begin
-      
-      --MicroBit.Console.Put_Line ("Sense started");
-      
+   begin    
       loop
          myClock := Clock; 
          if MicroBit.Buttons.State (Button_A) = Pressed then
@@ -65,11 +58,13 @@ package body TaskSense is
          
          --MicroBit.Console.Put_Line("Raw data Y: " & Data_X'Image);
          --MicroBit.Console.Put_Line("Y koordinater" & Data.Y'Img);
-        -- MicroBit.Console.Put_Line("Right sensor" & Distance_Right'image);
+         MicroBit.Console.Put_Line("Right sensor" & Distance_Right'image);
+        MicroBit.Console.Put_Line ("Left sensor" & Distance_Left'Image);
+        MicroBit.Console.Put_Line ("Front sensor" & Distance_Front'Image);
          
          end;
          time_now := Clock - myClock; 
-         --MicroBit.Console.Put_Line("Tasksense" & To_Duration(time_now)'Image);
+         MicroBit.Console.Put_Line("Tasksense" & To_Duration(time_now)'Image);
 
          delay until myClock + Milliseconds(200); --random period
          
